@@ -5,8 +5,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="https://unpkg.com/vue@3"></script>
+    <style>
+        html, body {
+            height: 100%;
+        }
+        body {
+            display: grid;
+            place-items: center;
+        }
+
+        .text-red {
+            color: red
+        }
+
+        .text-blue {
+
+            color: blue
+        }
+
+        .text-green {
+            color: green
+        }
+    </style>
 </head>
 <body>
-
+    <header>
+    </header>
+    <div id="app">
+        <button :class="buttonClasses">CLICK ME</button>
+    </div>
+    <script>
+        Vue.createApp({
+            data() {
+                return {
+                   buttonClasses: 'text-blue'
+                };
+            }
+        }).mount('#app');
+    </script>
 </body>
 </html>
