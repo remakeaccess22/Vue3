@@ -11,63 +11,22 @@
     <header>
     </header>
     <div id="app">
-        <section v-show="inProgressAssignments.length" class="mb-8">
-            <h2 class="font-bold text-2xl mb-4">
-                In Progress Assignments
-            </h2>
-            <ul>
-                <li
-                v-for="assignment in inProgressAssignments"
-                :key="assignment.name"
-                >
-                    <label>
-                        {{ assignment.name }}
-                        <input type="checkbox" v-model="assignment.completed">
-                    </label>
-                </li>
-            </ul>
-        </section>
-
-        <section v-show="completedAssignments.length"class="mt-8">
-            <h2 class="font-bold text-2xl mb-4">
-                Completed Assignments
-            </h2>
-            <ul>
-                <li
-                v-for="assignment in completedAssignments"
-                :key="assignment.name"
-                >
-                    <label>
-                        {{ assignment.name }}
-                        <input type="checkbox" v-model="assignment.completed">
-                    </label>
-                </li>
-            </ul>
-        </section>
+        <app-button>Submit</app-button>
     </div>
     <script>
         let app = {
-            data() {
-                return {
-                    assignments: [
-                        { name: 'Finish Project', completed: false },
-                        { name: 'Review Code', completed: false },
-                        { name: 'Write Tests', completed: false }
-                    ]
-                };
-            },
-
-            computed: {
-                inProgressAssignments() {
-                    return this.assignments.filter(a => ! a.completed);
-                },
-
-                completedAssignments() {
-                    return this.assignments.filter(a => a.completed);
+            components: {
+                'app-button': {
+                    template: `
+                      <button class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+                        <slot />
+                    `,
+                    mounted() {
+                        alert('Button mounted');
+                    },
                 }
             }
         }
-
         Vue.createApp(app).mount('#app');
     </script>
 
