@@ -1,47 +1,75 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="h-full">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="https://unpkg.com/vue@3"></script>
-    <style>
-        html, body {
-            height: 100%;
-        }
-        body {
-            display: grid;
-            place-items: center;
-        }
-
-        .text-red {
-            color: red
-        }
-
-        .text-blue {
-
-            color: blue
-        }
-
-        .text-green {
-            color: green
-        }
-    </style>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
+<body class="h-full grid place-items-center">
     <header>
     </header>
     <div id="app">
-        <button :class="buttonClasses">CLICK ME</button>
+        <section v-show="inProgressAssignments.length" class="mb-8">
+            <h2 class="font-bold text-2xl mb-4">
+                In Progress Assignments
+            </h2>
+            <ul>
+                <li
+                v-for="assignment in inProgressAssignments"
+                :key="assignment.name"
+                >
+                    <label>
+                        {{ assignment.name }}
+                        <input type="checkbox" v-model="assignment.completed">
+                    </label>
+                </li>
+            </ul>
+        </section>
+
+        <section v-show="completedAssignments.length"class="mt-8">
+            <h2 class="font-bold text-2xl mb-4">
+                Completed Assignments
+            </h2>
+            <ul>
+                <li
+                v-for="assignment in completedAssignments"
+                :key="assignment.name"
+                >
+                    <label>
+                        {{ assignment.name }}
+                        <input type="checkbox" v-model="assignment.completed">
+                    </label>
+                </li>
+            </ul>
+        </section>
     </div>
     <script>
-        Vue.createApp({
+        let app = {
             data() {
                 return {
-                   buttonClasses: 'text-blue'
+                    assignments: [
+                        { name: 'Finish Project', completed: false },
+                        { name: 'Review Code', completed: false },
+                        { name: 'Write Tests', completed: false }
+                    ]
                 };
+            },
+
+            computed: {
+                inProgressAssignments() {
+                    return this.assignments.filter(a => ! a.completed);
+                },
+
+                completedAssignments() {
+                    return this.assignments.filter(a => a.completed);
+                }
             }
-        }).mount('#app');
+        }
+
+        Vue.createApp(app).mount('#app');
     </script>
+
 </body>
 </html>
