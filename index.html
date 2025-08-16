@@ -4,30 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script src="https://unpkg.com/vue@3"></script>
+    <script src="https://unpkg.com/vue@3.3.4"></script>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="h-full grid place-items-center">
     <header>
     </header>
     <div id="app">
-        <app-button>Submit</app-button>
+
     </div>
-    <script>
-        let app = {
-            components: {
-                'app-button': {
-                    template: `
-                      <button class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
-                        <slot />
-                    `,
-                    mounted() {
-                        alert('Button mounted');
-                    },
-                }
-            }
-        }
-        Vue.createApp(app).mount('#app');
+    <script type="module">
+    import App from './js/components/App.js';
+    Vue.createApp(App).mount('#app');
     </script>
 
 </body>
