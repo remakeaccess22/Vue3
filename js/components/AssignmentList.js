@@ -3,10 +3,10 @@ export default {
   components: { Assignment },
   template: `
     <section v-show="assignments.length" class="mb-8">
-      <h2 class="font-bold text-2xl mb-4">
+      <h2 class="font-bold text-xl mb-4">
         {{ title }}
       </h2>
-      <ul>
+      <ul class ="border border-gray-600 divide divide-y divide-gray-600">
         <assignment
         v-for="assignment in assignments"
         :key="assignment.name"
